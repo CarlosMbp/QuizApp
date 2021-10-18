@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ResultadoActivity">
+
+    <Button
+        android:id="@+id/bttReiniciar"
+        android:layout_width="150dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="44dp"
+        android:onClick="Reiniciar"
+        android:text="Reiniciar"
+        app:layout_constraintBottom_toBottomOf="@+id/bttSalir"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtPuntuacionF"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/bttSalir"
+        android:layout_width="150dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="152dp"
+        android:layout_marginEnd="44dp"
+        android:onClick="Volver"
+        android:text="Menú principal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtPuntuacionF" />
+
+    <TextView
+        android:id="@+id/txtPuntuacionF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="144dp"
+        android:layout_marginEnd="136dp"
+        android:text="Aqui irá la puntuacion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
