@@ -1,14 +1,19 @@
 package com.example.quizapp;
 
+import static android.R.*;
+
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -20,7 +25,7 @@ import java.util.List;
 public class QuizActivity extends AppCompatActivity {
 
     private List<Pregunta> listaPreguntas;
-    private TextView txtPregunta,txtPuntuacion,txtIdPregunta,txtTiempo;
+    private TextView txtPregunta,txtPuntuacion,txtIdPregunta,txtTiempo,txtResultado;
     private RadioGroup radioGroup;
     private RadioButton rdb1,rdb2,rdb3,rdb4;
     private Button bttSiguiente,bttReiniciar;
@@ -36,6 +41,7 @@ public class QuizActivity extends AppCompatActivity {
     ColorStateList dfRbColor;
     boolean contestada;
 
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +51,7 @@ public class QuizActivity extends AppCompatActivity {
         txtPuntuacion=findViewById(R.id.txtPuntuacionF);
         txtIdPregunta=findViewById(R.id.txtIdPregunta);
         txtTiempo=findViewById(R.id.txtTiempo);
+        txtResultado= findViewById(R.id.txtResultado);
 
         radioGroup= findViewById(R.id.radioGroup);
         rdb1=findViewById(R.id.rdbOpcion1);
@@ -53,6 +60,7 @@ public class QuizActivity extends AppCompatActivity {
         rdb4=findViewById(R.id.rdbOpcion4);
         bttSiguiente=findViewById(R.id.bttSiguiente);
         bttReiniciar=findViewById(R.id.bttReiniciar);
+        Log.i("he llegado","he llegado");
 
         listaPreguntas = new ArrayList<>();
 
@@ -66,6 +74,7 @@ public class QuizActivity extends AppCompatActivity {
 
     //Pasamos a la siguiente pregunta
     public void siguiente(View view){
+        txtResultado.setVisibility(View.INVISIBLE);
         if (contestada==false){
             if (rdb1.isChecked() || rdb2.isChecked() || rdb3.isChecked() || rdb4.isChecked()){
                 comprobarRespuesta();
@@ -74,6 +83,7 @@ public class QuizActivity extends AppCompatActivity {
                 Toast.makeText(QuizActivity.this,"Seleccione una de las respuestas",Toast.LENGTH_SHORT).show();
             }
         }else{
+
             mostrarSiguientePregunta();
         }
     }
@@ -87,6 +97,7 @@ public class QuizActivity extends AppCompatActivity {
 
     }
 
+    @SuppressLint("ResourceAsColor")
     private void comprobarRespuesta() {
 
         contestada=true;
@@ -97,11 +108,27 @@ public class QuizActivity extends AppCompatActivity {
 
         if(opcionSeleccionada == preguntaActual.getOpcionCorrecta()){
             puntuacion+=3;
+
+            //Modificamos puntuación y mostramos textView de correcto
             txtPuntuacion.setText("Puntuacion: "+puntuacion);
+            //Actualizamos el txt resultado
+            txtResultado.setVisibility(View.VISIBLE);
+            txtResultado.setText("Respuesta correcta!!");
+            txtResultado.setTextColor(Color.WHITE);
+            txtResultado.setBackgroundColor(Color.GREEN);
+
         }else{
             puntuacion-=2;
-            txtPuntuacion.setText("Puntuacion: "+puntuacion);
+
+            //Hacemos aparecer el botón de reiniciar
             bttReiniciar.setVisibility(View.VISIBLE);
+            //Modificamos puntuación y mostramos textView de incorrecto
+            txtPuntuacion.setText("Puntuacion: "+puntuacion);
+            //Actualizamos el txt resultado
+            txtResultado.setVisibility(View.VISIBLE);
+            txtResultado.setText("Respuesta incorrecta");
+            txtResultado.setTextColor(Color.WHITE);
+            txtResultado.setBackgroundColor(Color.RED);
         }
 
         /*Si la respuesta es correcta el radioButton correspondiente se resaltará en verde, en caso contrario
