@@ -9,13 +9,16 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="353dp"
-        android:layout_height="181dp"
-        android:layout_marginBottom="120dp"
+        android:layout_width="362dp"
+        android:layout_height="185dp"
+        android:layout_margin="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
         android:contentDescription="@string/logo"
-        app:layout_constraintBottom_toTopOf="@+id/btn_comenzar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo" />
 
     <Button
@@ -24,21 +27,21 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
+        android:layout_marginTop="144dp"
         android:layout_marginEnd="112dp"
-        android:layout_marginBottom="260dp"
         android:background="@drawable/btt"
         android:onClick="Comenzar"
         android:text="@string/comenzar"
         android:textSize="22sp"
         android:textStyle="italic"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="15dp"
         android:padding="16sp"
         android:text="@string/carlos_manuel_barrameda_portieles"
         android:textAlignment="center"
@@ -53,7 +56,7 @@
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
+        android:layout_marginBottom="30dp"
         android:background="@color/white"
         android:padding="16sp"
         android:text="@string/grado_en_ingenier_a_de_computadores_26_10_2021"
