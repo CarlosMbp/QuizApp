@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">Quiz App</string>
+    <string name="comenzar">Comenzar</string>
+    <string name="carlos_manuel_barrameda_portieles">Carlos Manuel Barrameda Portieles</string>
+    <string name="grado_en_ingenier_a_de_computadores_26_10_2021">Grado en Ingeniería de Computadores {26/10/2021}</string>
+    <string name="logo">logo</string>
+    <string name="las_preguntas_se_realizar_n_aqu">Las preguntas se realizarán aquí</string>
+    <string name="radiobutton">RadioButton</string>
+    <string name="radiobutton">RadioButton</string>
+    <string name="radiobutton">RadioButton</string>
+    <string name="radiobutton">RadioButton</string>
+    <string name="siguiente">Siguiente</string>
+    <string name="mostrar_si_satisfactorio_o_incorrecto">MOSTRARÁ SI SATISFACTORIO O INCORRECTO</string>
+    <string name="reiniciar">Reiniciar</string>
+    <string name="pregunta_1">Pregunta 1/#</string>
+    <string name="puntuaci_n_0">Puntuación: 0</string>
+    <string name="_00_20">00:20</string>
+    <string name="reiniciar">Reiniciar</string>
+    <string name="men_principal">Menú principal</string>
+    <string name="la_puntuaci_n_se_mostrar_aqu">LA PUNTUACIÓN SE MOSTRARÁ AQUÍ</string>
 </resources>

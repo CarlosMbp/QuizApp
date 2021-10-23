@@ -1,9 +1,6 @@
 package com.example.quizapp;
 
-import static android.R.*;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.ColorStateList;
@@ -13,7 +10,6 @@ import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -75,7 +71,7 @@ public class QuizActivity extends AppCompatActivity {
     //Pasamos a la siguiente pregunta
     public void siguiente(View view){
         txtResultado.setVisibility(View.INVISIBLE);
-        if (contestada==false){
+        if (!contestada){
             if (rdb1.isChecked() || rdb2.isChecked() || rdb3.isChecked() || rdb4.isChecked()){
                 comprobarRespuesta();
                 contTiempo.cancel();
