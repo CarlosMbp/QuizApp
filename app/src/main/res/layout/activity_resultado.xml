@@ -18,7 +18,8 @@
         android:textColor="@color/white1"
         android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtPuntuacionF" />
+        app:layout_constraintTop_toBottomOf="@+id/txtPuntuacionF"
+        tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/bttSalir"
@@ -31,7 +32,8 @@
         android:textColor="@color/white1"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtPuntuacionF" />
+        app:layout_constraintTop_toBottomOf="@+id/txtPuntuacionF"
+        tools:ignore="TextContrastCheck" />
 
     <TextView
         android:id="@+id/txtPuntuacionF"

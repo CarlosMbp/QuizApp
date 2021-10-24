@@ -18,6 +18,10 @@ public class ResultadoActivity extends AppCompatActivity {
 
         txtPuntuacionF=findViewById(R.id.txtPuntuacionF);
 
+        /*
+        Al crearse la activity sabemos, que se le ha enviado un "extra" Puntuación, el cúal contiene la puntuación final
+        "Cogemos" la puntuación y la mostramos por pantalla
+        */
         int puntuacion= getIntent().getExtras().getInt("Puntuación");
         txtPuntuacionF.setText("Puntuación final: "+ puntuacion);
     }
@@ -32,6 +36,8 @@ public class ResultadoActivity extends AppCompatActivity {
 
 
     public void Reiniciar(View view){
+
+        //Lanzamos una nueva activity QuizActivity
         Intent Quiz = new Intent(this, QuizActivity.class);
         startActivity(Quiz);
     }

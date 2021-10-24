@@ -27,7 +27,7 @@
 
     <RadioGroup
         android:id="@+id/radioGroup"
-        android:layout_width="243dp"
+        android:layout_width="303dp"
         android:layout_height="193dp"
         android:layout_marginBottom="15dp"
         android:background="@color/white"
@@ -68,6 +68,7 @@
             android:layout_height="wrap_content"
             android:text="@string/radiobutton4"
             android:textSize="17sp" />
+
     </RadioGroup>
 
     <Button

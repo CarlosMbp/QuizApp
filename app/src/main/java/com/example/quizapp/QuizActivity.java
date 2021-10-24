@@ -1,5 +1,7 @@
 package com.example.quizapp;
 
+//En la aplicación las preguntas con imagenes, tendrán dos opcciones
+
 import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -7,7 +9,6 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -25,8 +26,9 @@ public class QuizActivity extends AppCompatActivity {
     private RadioGroup radioGroup;
     private RadioButton rdb1,rdb2,rdb3,rdb4;
     private Button bttSiguiente,bttReiniciar;
-
     private Pregunta preguntaActual;
+
+    boolean contestada;
 
     int numPreguntas;
     int contPreguntas=0;
@@ -34,8 +36,8 @@ public class QuizActivity extends AppCompatActivity {
 
     CountDownTimer contTiempo;
 
+    //Variable para cambiar el color del texto, verde si es correcto y rojo si es incorrecto
     ColorStateList dfRbColor;
-    boolean contestada;
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -54,42 +56,52 @@ public class QuizActivity extends AppCompatActivity {
         rdb2=findViewById(R.id.rdbOpcion2);
         rdb3=findViewById(R.id.rdbOpcion3);
         rdb4=findViewById(R.id.rdbOpcion4);
+
         bttSiguiente=findViewById(R.id.bttSiguiente);
         bttReiniciar=findViewById(R.id.bttReiniciar);
-        Log.i("he llegado","he llegado");
 
+        //Declaramos el arrayList para las preguntas
         listaPreguntas = new ArrayList<>();
 
         dfRbColor = rdb1.getTextColors();
 
+        //Añadimos las preguntas a "ListaPreguntas"
         anadirPreguntas();
+        //Actualizamos el valor de numPreguntas con el tamaño de la lista
         numPreguntas= listaPreguntas.size();
 
+        //Mostramos la primera pregunta
         mostrarSiguientePregunta();
     }
 
     //Pasamos a la siguiente pregunta
     public void siguiente(View view){
         txtResultado.setVisibility(View.INVISIBLE);
+        //Si la pregunta no ha sido contestada, comprobamos si se ha seleccionado una opción
         if (!contestada){
+
             if (rdb1.isChecked() || rdb2.isChecked() || rdb3.isChecked() || rdb4.isChecked()){
+                //Si se ha seleccionado alguna opción comprobamos la respuesta y cancelamos la cuenta atrás
                 comprobarRespuesta();
                 contTiempo.cancel();
             }else{
+
+                //Si queremos pasar de pregunta pero no hemos marcado ninguna opción lanzaremos un Toast
                 Toast.makeText(QuizActivity.this,"Seleccione una de las respuestas",Toast.LENGTH_SHORT).show();
             }
+        //Si ha sido contestada mostramos la siguiente pregunta
         }else{
 
             mostrarSiguientePregunta();
         }
     }
 
-    //Boton para lanzar reiniciar la activity
+    //Boton para reiniciar la activity
     public void reiniciar(View view){
+        //Creamos una intent nueva, finalizamos la actual y lanzamos la creada
         Intent Quiz = getIntent();
         finish();
         startActivity(Quiz);
-
 
     }
 
@@ -165,45 +177,55 @@ public class QuizActivity extends AppCompatActivity {
 
     private void mostrarSiguientePregunta() {
 
+        //Quitamos todos los checks de los radioButtons y ponemos los colores por defecto "negro"
         radioGroup.clearCheck();
         rdb1.setTextColor(dfRbColor);
         rdb2.setTextColor(dfRbColor);
         rdb3.setTextColor(dfRbColor);
         rdb4.setTextColor(dfRbColor);
 
-
+        //Comprobamos si quedan más preguntas
         if(contPreguntas<numPreguntas){
+            //Activamos el cronómetro
             cronometro();
+            //Actualizamos la pregunta actual
             preguntaActual= listaPreguntas.get(contPreguntas);
             txtPregunta.setText(preguntaActual.getPregunta());
+
+            //Actualizamos los textos de los radioButtons con las opcciones de las preguntas
             rdb1.setText(preguntaActual.getOpcion1());
             rdb2.setText(preguntaActual.getOpcion2());
             rdb3.setText(preguntaActual.getOpcion3());
             rdb4.setText(preguntaActual.getOpcion4());
 
+            //Aumentamos el contador de la pregunta en la que nos encontramos
             contPreguntas++;
+            txtIdPregunta.setText("Pregunta: "+contPreguntas+"/"+numPreguntas);
 
             bttSiguiente.setText("Contestar");
-            txtIdPregunta.setText("Pregunta: "+contPreguntas+"/"+numPreguntas);
             contestada=false;
+
+        //Si el contador de preguntas contestadas es igual que el numero de preguntas totales, el juego habrá finalizado
         }else{
 
-            //Lnazamos nueva activity y mostramos la puntuación final
+            //Lnazamos nueva activity y mostramos la puntuación final, además le mandamos como "extra" la puntuación actual
             Intent PantallaFinal = new Intent(this, ResultadoActivity.class);
             PantallaFinal.putExtra("Puntuación",puntuacion);
             startActivity(PantallaFinal);
         }
     }
 
-    //Establecemos una cuentra regresiva desde 20 seg hasta 0 de segundo en segundo
+    //Establecemos una cuentra regresiva desde 30 seg hasta 0, de segundo en segundo
     private void cronometro() {
-        contTiempo= new CountDownTimer(20000,1000) {
+        // Actualizamos "contTiempo" con un objeto tipo CountDownTimer
+        contTiempo= new CountDownTimer(30000,1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 txtTiempo.setText("00:" +millisUntilFinished/1000);
 
             }
 
+            //Al finalizar el cronómetro, restaremos 2 a la puntuación y mostraremos la siguiente pregunta
             @Override
             public void onFinish() {
                 puntuacion-=2;
@@ -215,10 +237,12 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void anadirPreguntas(){
-        listaPreguntas.add(new Pregunta("¿A?","a","b","c","d",1));
-        listaPreguntas.add(new Pregunta("¿B?","a","b","c","d",2));
-        listaPreguntas.add(new Pregunta("¿C?","a","b","c","d",3));
-        listaPreguntas.add(new Pregunta("¿D?","a","b","c","d",4));
-        listaPreguntas.add(new Pregunta("¿E?","a","e","c","d",2));
+
+        //Cargamos las preguntas en el array de listaPreguntas
+        listaPreguntas.add(new Pregunta("¿Cuál es el lugar más frío de la tierra?","La Antártida","Rusia","Alemania","Cánada",1));
+        listaPreguntas.add(new Pregunta("¿Cómo se llama la capital de Mongolia?","Luanda","Ulan Bator","Berlín","Saint John",2));
+        listaPreguntas.add(new Pregunta("¿En qué continente está Ecuador?","Europa","África","América","Oceanía",3));
+        listaPreguntas.add(new Pregunta("¿Qué cantidad de huesos en el cuerpo humano?","300","100","209","206",4));
+        listaPreguntas.add(new Pregunta("¿Quién es el autor de el Quijote?","Goethe","Miguel de Cervantes","Marqués de Sade","Victor Hugo",2));
     }
 }

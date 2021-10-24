@@ -12,6 +12,8 @@ public class Pregunta {
         this.opcion3 = opcion3;
         this.opcion4 = opcion4;
         this.opcionCorrecta = opcionCorrecta;
+
+
     }
 
     public String getPregunta() {
@@ -26,8 +28,8 @@ public class Pregunta {
         return opcion1;
     }
 
-    public void setOpccion1(String opccion1) {
-        this.opcion1 = opccion1;
+    public void setOpcion1(String opcion1) {
+        this.opcion1 = opcion1;
     }
 
     public String getOpcion2() {
@@ -61,4 +63,5 @@ public class Pregunta {
     public void setOpcionCorrecta(int opcionCorrecta) {
         this.opcionCorrecta = opcionCorrecta;
     }
+
 }
