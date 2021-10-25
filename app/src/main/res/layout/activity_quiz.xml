@@ -9,9 +9,9 @@
 
     <TextView
         android:id="@+id/txtPregunta"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
+        android:layout_width="388dp"
+        android:layout_height="55dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/txt"
         android:padding="16sp"
         android:text="@string/las_preguntas_se_realizar_n_aqu"
@@ -22,26 +22,26 @@
         app:circularflow_radiusInDP="20dp"
         app:layout_constraintBottom_toTopOf="@+id/radioGroup"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
-        android:layout_width="303dp"
-        android:layout_height="193dp"
+        android:layout_width="381dp"
+        android:layout_height="343dp"
         android:layout_marginBottom="15dp"
         android:background="@color/white"
         android:textStyle="italic"
         app:circularflow_radiusInDP="20dp"
         app:layout_constraintBottom_toTopOf="@+id/bttSiguiente"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.575"
         app:layout_constraintStart_toStartOf="parent">
 
         <RadioButton
             android:id="@+id/rdbOpcion1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="83dp"
             android:layout_marginTop="1dp"
             android:layout_marginEnd="1dp"
             android:text="@string/radiobutton1"
@@ -51,21 +51,21 @@
         <RadioButton
             android:id="@+id/rdbOpcion2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="83dp"
             android:text="@string/radiobutton2"
             android:textSize="17sp" />
 
         <RadioButton
             android:id="@+id/rdbOpcion3"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="83dp"
             android:text="@string/radiobutton3"
             android:textSize="17sp" />
 
         <RadioButton
             android:id="@+id/rdbOpcion4"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
             android:text="@string/radiobutton4"
             android:textSize="17sp" />
 
@@ -73,24 +73,24 @@
 
     <Button
         android:id="@+id/bttSiguiente"
-        android:layout_width="160dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="120dp"
-        android:layout_marginBottom="10dp"
+        android:layout_width="144dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="28dp"
         android:background="@drawable/btt"
         android:onClick="siguiente"
         android:text="@string/siguiente"
         android:textColor="@color/white"
         android:textSize="15sp"
         android:textStyle="italic"
-        app:layout_constraintBottom_toTopOf="@+id/bttReiniciar"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/txtResultado"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
+        android:layout_marginBottom="12dp"
         android:background="@drawable/txt"
         android:padding="16sp"
         android:text="@string/mostrar_si_satisfactorio_o_incorrecto"
@@ -101,15 +101,15 @@
         app:circularflow_radiusInDP="20dp"
         app:layout_constraintBottom_toTopOf="@+id/txtPregunta"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/bttReiniciar"
-        android:layout_width="160dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="120dp"
-        android:layout_marginBottom="16dp"
+        android:layout_width="144dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="28dp"
         android:background="@drawable/bttreiniciar"
         android:drawableStart="@android:drawable/ic_menu_rotate"
         android:onClick="reiniciar"
@@ -124,58 +124,55 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardDatos"
-        android:layout_width="350dp"
-        android:layout_height="132dp"
+        android:layout_width="357dp"
+        android:layout_height="60dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="15dp"
         app:cardCornerRadius="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/txtResultado"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/txtIdPregunta"
                 android:layout_width="148dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:layout_marginEnd="4dp"
+
                 android:padding="16sp"
                 android:text="@string/pregunta_1"
                 android:textColor="@color/black"
                 android:textSize="17sp"
                 app:layout_constraintEnd_toStartOf="@+id/txtTiempo"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="0.069"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtTiempo" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/txtPuntuacionF"
-                android:layout_width="148dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="8dp"
+                android:layout_width="155dp"
+                android:layout_height="54dp"
+                android:layout_marginTop="4dp"
                 android:padding="16sp"
                 android:text="@string/puntuaci_n_0"
                 android:textColor="@color/black"
                 android:textSize="17sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/txtTiempo"
-                app:layout_constraintTop_toBottomOf="@+id/txtTiempo" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/txtTiempo"
                 android:layout_width="88dp"
                 android:layout_height="59dp"
                 android:layout_marginTop="4dp"
-                android:layout_marginEnd="128dp"
+                android:layout_marginEnd="144dp"
                 android:padding="16sp"
                 android:text="@string/_00_20"
                 android:textColor="@color/black"

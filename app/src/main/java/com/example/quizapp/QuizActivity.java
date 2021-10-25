@@ -9,6 +9,7 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -184,19 +185,51 @@ public class QuizActivity extends AppCompatActivity {
         rdb3.setTextColor(dfRbColor);
         rdb4.setTextColor(dfRbColor);
 
+        //Seteamos los valores a 0 y quitamos imagenes siempre antes de mostrar una pregunta por si acaso
+        resetearValores();
+
         //Comprobamos si quedan más preguntas
         if(contPreguntas<numPreguntas){
             //Activamos el cronómetro
             cronometro();
             //Actualizamos la pregunta actual
             preguntaActual= listaPreguntas.get(contPreguntas);
-            txtPregunta.setText(preguntaActual.getPregunta());
 
-            //Actualizamos los textos de los radioButtons con las opcciones de las preguntas
-            rdb1.setText(preguntaActual.getOpcion1());
-            rdb2.setText(preguntaActual.getOpcion2());
-            rdb3.setText(preguntaActual.getOpcion3());
-            rdb4.setText(preguntaActual.getOpcion4());
+
+            //Comprobamos si es una pregunta sin imagenes, con respuesta tipo imagenes o con pregunta tipo imagen
+            //Tipo respuestas imagen
+            if(preguntaActual.getTipo()==2){
+
+                txtPregunta.setText(preguntaActual.getPregunta());
+
+                rdb1.setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, getDrawable(Integer.parseInt(preguntaActual.getOpcion1())), null);
+                rdb2.setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, getDrawable(Integer.parseInt(preguntaActual.getOpcion2())), null);
+                rdb3.setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, getDrawable(Integer.parseInt(preguntaActual.getOpcion3())), null);
+                rdb4.setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, getDrawable(Integer.parseInt(preguntaActual.getOpcion4())), null);
+
+                //Tipo respuestas y pregunta sin imagen
+            }else if (preguntaActual.getTipo()==0) {
+
+                txtPregunta.setText(preguntaActual.getPregunta());
+
+                //Actualizamos los textos de los radioButtons con las opcciones de las preguntas
+                rdb1.setText(preguntaActual.getOpcion1());
+                rdb2.setText(preguntaActual.getOpcion2());
+                rdb3.setText(preguntaActual.getOpcion3());
+                rdb4.setText(preguntaActual.getOpcion4());
+
+                //Tipo pregunta con imagen y respuesta sin imagenes
+            }else{
+                int i=9;
+                //Ponemos iamgen de pregunta
+                txtPregunta.setCompoundDrawablesRelativeWithIntrinsicBounds(getDrawable(Integer.parseInt(preguntaActual.getPregunta())), null, null, null);
+
+                //Actualizamos los textos de los radioButtons con las opcciones de las preguntas
+                rdb1.setText(preguntaActual.getOpcion1());
+                rdb2.setText(preguntaActual.getOpcion2());
+                rdb3.setText(preguntaActual.getOpcion3());
+                rdb4.setText(preguntaActual.getOpcion4());
+            }
 
             //Aumentamos el contador de la pregunta en la que nos encontramos
             contPreguntas++;
@@ -213,6 +246,22 @@ public class QuizActivity extends AppCompatActivity {
             PantallaFinal.putExtra("Puntuación",puntuacion);
             startActivity(PantallaFinal);
         }
+    }
+
+    private void resetearValores() {
+
+        //Reseteamos texto
+        txtPregunta.setText("");
+        rdb1.setText("");
+        rdb2.setText("");
+        rdb3.setText("");
+        rdb4.setText("");
+        //Reseteamos imagenes
+        txtPregunta.setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, null, null);
+        rdb1.setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, null, null);
+        rdb2.setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, null, null);
+        rdb3.setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, null, null);
+        rdb4.setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, null, null);
     }
 
     //Establecemos una cuentra regresiva desde 30 seg hasta 0, de segundo en segundo
@@ -239,10 +288,12 @@ public class QuizActivity extends AppCompatActivity {
     private void anadirPreguntas(){
 
         //Cargamos las preguntas en el array de listaPreguntas
-        listaPreguntas.add(new Pregunta("¿Cuál es el lugar más frío de la tierra?","La Antártida","Rusia","Alemania","Cánada",1));
-        listaPreguntas.add(new Pregunta("¿Cómo se llama la capital de Mongolia?","Luanda","Ulan Bator","Berlín","Saint John",2));
-        listaPreguntas.add(new Pregunta("¿En qué continente está Ecuador?","Europa","África","América","Oceanía",3));
-        listaPreguntas.add(new Pregunta("¿Qué cantidad de huesos en el cuerpo humano?","300","100","209","206",4));
-        listaPreguntas.add(new Pregunta("¿Quién es el autor de el Quijote?","Goethe","Miguel de Cervantes","Marqués de Sade","Victor Hugo",2));
+        listaPreguntas.add(new Pregunta("¿Cuál es el lugar más frío de la tierra?","La Antártida","Rusia","Alemania","Cánada",0,1));
+        listaPreguntas.add(new Pregunta("¿Cómo se llama la capital de Mongolia?","Luanda","Ulan Bator","Berlín","Saint John",0,2));
+        listaPreguntas.add(new Pregunta("¿En qué continente está Ecuador?","Europa","África","América","Oceanía",0,3));
+        listaPreguntas.add(new Pregunta("¿Cúal marca se fundó en 1947?",Integer.toString(R.drawable.peugeot),Integer.toString(R.drawable.renault),Integer.toString(R.drawable.volvo),Integer.toString(R.drawable.ferrari),2,4));
+        listaPreguntas.add(new Pregunta("¿Qué cantidad de huesos en el cuerpo humano?","300","100","209","206",0,4));
+        listaPreguntas.add(new Pregunta(Integer.toString(R.drawable.mongolia),"Mongolia","España","Venezuela","Cuba",1,1));
+
     }
 }

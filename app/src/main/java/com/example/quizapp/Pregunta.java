@@ -3,17 +3,17 @@ package com.example.quizapp;
 public class Pregunta {
     private String pregunta;
     private String opcion1,opcion2,opcion3,opcion4;
+    private int tipo;
     private int opcionCorrecta;
 
-    public Pregunta(String pregunta, String opcion1, String opcion2, String opcion3, String opcion4, int opcionCorrecta) {
+    public Pregunta(String pregunta, String opcion1, String opcion2, String opcion3, String opcion4, int tipo, int opcionCorrecta) {
         this.pregunta = pregunta;
         this.opcion1 = opcion1;
         this.opcion2 = opcion2;
         this.opcion3 = opcion3;
         this.opcion4 = opcion4;
+        this.tipo = tipo;
         this.opcionCorrecta = opcionCorrecta;
-
-
     }
 
     public String getPregunta() {
@@ -56,6 +56,14 @@ public class Pregunta {
         this.opcion4 = opcion4;
     }
 
+    public int getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
+    }
+
     public int getOpcionCorrecta() {
         return opcionCorrecta;
     }
@@ -63,5 +71,4 @@ public class Pregunta {
     public void setOpcionCorrecta(int opcionCorrecta) {
         this.opcionCorrecta = opcionCorrecta;
     }
-
 }
