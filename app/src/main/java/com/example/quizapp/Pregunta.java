@@ -1,12 +1,16 @@
 package com.example.quizapp;
 
 public class Pregunta {
+    //Este primer atributo será distinto de null si y sólo sí la pregunta tiene cómo pregunta una Imagen
+    //De está manera podemos asignar la pregunta texto con la pregunta imagen
+    private String imgPregunta;
     private String pregunta;
     private String opcion1,opcion2,opcion3,opcion4;
     private int tipo;
     private int opcionCorrecta;
 
-    public Pregunta(String pregunta, String opcion1, String opcion2, String opcion3, String opcion4, int tipo, int opcionCorrecta) {
+    public Pregunta(String imgPregunta, String pregunta, String opcion1, String opcion2, String opcion3, String opcion4, int tipo, int opcionCorrecta) {
+        this.imgPregunta = imgPregunta;
         this.pregunta = pregunta;
         this.opcion1 = opcion1;
         this.opcion2 = opcion2;
@@ -14,6 +18,14 @@ public class Pregunta {
         this.opcion4 = opcion4;
         this.tipo = tipo;
         this.opcionCorrecta = opcionCorrecta;
+    }
+
+    public String getImgPregunta() {
+        return imgPregunta;
+    }
+
+    public void setImgPregunta(String imgPregunta) {
+        this.imgPregunta = imgPregunta;
     }
 
     public String getPregunta() {

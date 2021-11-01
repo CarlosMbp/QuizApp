@@ -202,10 +202,10 @@ public class QuizActivity extends AppCompatActivity {
 
                 txtPregunta.setText(preguntaActual.getPregunta());
 
-                rdb1.setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, getDrawable(Integer.parseInt(preguntaActual.getOpcion1())), null);
-                rdb2.setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, getDrawable(Integer.parseInt(preguntaActual.getOpcion2())), null);
-                rdb3.setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, getDrawable(Integer.parseInt(preguntaActual.getOpcion3())), null);
-                rdb4.setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, getDrawable(Integer.parseInt(preguntaActual.getOpcion4())), null);
+                rdb1.setCompoundDrawablesRelativeWithIntrinsicBounds(getDrawable(Integer.parseInt(preguntaActual.getOpcion1())), null, null, null);
+                rdb2.setCompoundDrawablesRelativeWithIntrinsicBounds(getDrawable(Integer.parseInt(preguntaActual.getOpcion2())), null, null, null);
+                rdb3.setCompoundDrawablesRelativeWithIntrinsicBounds(getDrawable(Integer.parseInt(preguntaActual.getOpcion3())), null, null, null);
+                rdb4.setCompoundDrawablesRelativeWithIntrinsicBounds(getDrawable(Integer.parseInt(preguntaActual.getOpcion4())), null, null, null);
 
                 //Tipo respuestas y pregunta sin imagen
             }else if (preguntaActual.getTipo()==0) {
@@ -220,9 +220,10 @@ public class QuizActivity extends AppCompatActivity {
 
                 //Tipo pregunta con imagen y respuesta sin imagenes
             }else{
-                int i=9;
+
                 //Ponemos iamgen de pregunta
-                txtPregunta.setCompoundDrawablesRelativeWithIntrinsicBounds(getDrawable(Integer.parseInt(preguntaActual.getPregunta())), null, null, null);
+                txtPregunta.setText(preguntaActual.getPregunta());
+                txtPregunta.setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, getDrawable(Integer.parseInt(preguntaActual.getImgPregunta())), null);
 
                 //Actualizamos los textos de los radioButtons con las opcciones de las preguntas
                 rdb1.setText(preguntaActual.getOpcion1());
@@ -288,12 +289,12 @@ public class QuizActivity extends AppCompatActivity {
     private void anadirPreguntas(){
 
         //Cargamos las preguntas en el array de listaPreguntas
-        listaPreguntas.add(new Pregunta("¿Cuál es el lugar más frío de la tierra?","La Antártida","Rusia","Alemania","Cánada",0,1));
-        listaPreguntas.add(new Pregunta("¿Cómo se llama la capital de Mongolia?","Luanda","Ulan Bator","Berlín","Saint John",0,2));
-        listaPreguntas.add(new Pregunta("¿En qué continente está Ecuador?","Europa","África","América","Oceanía",0,3));
-        listaPreguntas.add(new Pregunta("¿Cúal marca se fundó en 1947?",Integer.toString(R.drawable.peugeot),Integer.toString(R.drawable.renault),Integer.toString(R.drawable.volvo),Integer.toString(R.drawable.ferrari),2,4));
-        listaPreguntas.add(new Pregunta("¿Qué cantidad de huesos en el cuerpo humano?","300","100","209","206",0,4));
-        listaPreguntas.add(new Pregunta(Integer.toString(R.drawable.mongolia),"Mongolia","España","Venezuela","Cuba",1,1));
+        listaPreguntas.add(new Pregunta(null,"¿Cuál es el lugar más frío de la tierra?","La Antártida","Rusia","Alemania","Cánada",0,1));
+        listaPreguntas.add(new Pregunta(null,"¿Cómo se llama la capital de Mongolia?","Luanda","Ulan Bator","Berlín","Saint John",0,2));
+        listaPreguntas.add(new Pregunta(null,"¿En qué continente está Ecuador?","Europa","África","América","Oceanía",0,3));
+        listaPreguntas.add(new Pregunta(null,"¿Cúal marca se fundó en 1947?",Integer.toString(R.drawable.peugeot),Integer.toString(R.drawable.renault),Integer.toString(R.drawable.volvo),Integer.toString(R.drawable.ferrari),2,4));
+        listaPreguntas.add(new Pregunta(null,"¿Qué cantidad de huesos en el cuerpo humano?","300","100","209","206",0,4));
+        listaPreguntas.add(new Pregunta(Integer.toString(R.drawable.mongolia),"¿De que país es la bandera?","Mongolia","España","Venezuela","Cuba",1,1));
 
     }
 }
