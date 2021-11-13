@@ -31,6 +31,8 @@ public class ResultadoActivity extends AppCompatActivity {
 
         //Lanzamos una nueva activity MainActivity
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        //Finalizamos la activity actual
+        finish();
         startActivity(intent);
     }
 
@@ -39,6 +41,8 @@ public class ResultadoActivity extends AppCompatActivity {
 
         //Lanzamos una nueva activity QuizActivity
         Intent Quiz = new Intent(this, QuizActivity.class);
+        //Finalizamos la activity actual
+        finish();
         startActivity(Quiz);
     }
 }
